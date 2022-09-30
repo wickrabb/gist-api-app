@@ -1,8 +1,12 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
+import { GistCard } from './GistCard';
+import GistInspect from './GistInspect';
 
-function GistFetch(){
+
+export const GistFetch = () => {
     const [gists,setGists] = useState([]);
+    const [input,setInput] = useState("acbharat");
     const [username,setUsername] = useState("");
 
     useEffect(() => {
@@ -19,14 +23,28 @@ function GistFetch(){
   console.error(error)
 })
     },[username])
-    return(
-        <div>
-          <input type="text" value={username} onChange={e => setUsername(e.target.value)}/>
-            <ul>
-                {gists.map(gist => (<li key={gist.id}>{gist.id}</li>))}
-            </ul>
+  
+  const handleClick = () => {
+    setUsername(input);
+  } 
+
+ 
+  return(
+      <div className="container">
+        <div className="search">
+          <input type="text" value={input} onChange={e => setInput(e.target.value)}/>
+          <button type="button" onClick={handleClick}>Search Gists</button>      
+        </div>   
+    
+          <div className="grid-container">
+          {gists.map(gist => {
+            return (
+              <div key={gist.id}>
+                <GistCard id={gist.id} props={gist.files} forks={gist.forks}/>
+              </div>
+            )
+          })}        
+        </div>
         </div>
     )
 }
-
-export default GistFetch
