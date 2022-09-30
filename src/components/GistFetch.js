@@ -28,6 +28,14 @@ export const GistFetch = () => {
     setUsername(input);
   } 
 
+  const [clickedGist, setClickedGist] = useState(null);
+  const inspectGist = (gist) => {
+    setClickedGist(gist);
+    console.log("click");
+  };
+
+  console.log(clickedGist);
+
  
   return(
       <div className="container">
@@ -39,11 +47,14 @@ export const GistFetch = () => {
           <div className="grid-container">
           {gists.map(gist => {
             return (
-              <div key={gist.id}>
+              <div key={gist.id} onClick={() => inspectGist(gist)}>
                 <GistCard id={gist.id} props={gist.files} forks={gist.forks}/>
               </div>
             )
           })}        
+        </div>
+        <div>
+        {clickedGist && <GistInspect clickedGist={clickedGist} setClickedGist={setClickedGist}/>}
         </div>
         </div>
     )

@@ -27,26 +27,28 @@ export const GistCard = (props) => {
  
   return (
     <div className="gist-card">
-      <span className="id">{"ID: "+gists[0]}</span>
-      <span>Files</span>
+    <span className="title">ID</span>
+      <span className="id">{gists[0]}</span>
+      <span className="title">Files</span>
       <div className="files">
         {files.map((file, index) => (
           <span key={index}>{file.filename + " "}</span>
         ))}
       </div>
-      <span>Tags</span>
+      <span className="title">Tags</span>
       <div className="tags">
         {files.map((file, index) => (
           <span key={index}>{file.language ? file.language + " " : ""}</span>
         ))}
       </div>
-      <span>Forks</span>
+      <span className="title">Forks</span>
       <div className="forks">
         {forks.slice(0,3).map((fork, index) => {
           return (
             <div className="user">
-          <span className="user-login" key={index}>{fork ? fork.user.login + " " : ""}</span>
           <img className="image" key={index} src={fork? fork.user.avatar_url:""}></img>
+          <span className="user-login" key={index}>{fork ? fork.user.login + " " : ""}</span>
+        
           </div>
         )})}
       </div> 
