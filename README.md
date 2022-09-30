@@ -22,6 +22,6 @@ I used axios to fetch data from the Gist API.
 
 Gist API needs an authorization token which I stored in an environmental variable and for that reason is not present in the actual repository. 
 
-The token needs to be replaced in the GistFetch.js component in the place of ```process.env.REACT_APP_TOKEN``` on in the ```.env.local``` file for the application to be working.
+The token needs to be replaced in the GistFetch.js component in the place of ```process.env.REACT_APP_TOKEN``` or in the ```.env.local``` file for the application to be working.
 
 
